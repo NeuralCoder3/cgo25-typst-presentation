@@ -26,7 +26,7 @@
   // logo: image("uni_logo.png", width: 2cm, height: 2cm)
   logo: place(
     bottom+center,
-    dx: 2.1cm,
+    dx: 2.07cm,
     box(
       clip: true,
       width: 7cm,
@@ -64,7 +64,6 @@ Comparison (Section 4)
 -> what learned
 
 Results of Kernels (Section 5)
-
 
 */
 
