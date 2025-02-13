@@ -1,0 +1,17 @@
+{
+  // "image": "neuralcoder/ocaml_knobel24",
+  "build": { 
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "VisualStudioExptTeam.vscodeintellicode",
+        "wayou.vscode-todo-highlight",
+        "myriad-dreamin.tinymist",
+        "nvarner.typst-lsp",
+        "surv.typst-math"
+      ]
+    }
+  }
+}
