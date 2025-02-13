@@ -70,7 +70,7 @@
           bottom+right,
           dy: -.5cm,
           box[
-            #image("uni_logo.png", width: 2cm, height: 2cm)
+            #image("imgs/uni_logo.png", width: 2cm, height: 2cm)
             // #let slidenumber = int(toolbox.slide-number)-1;
             // #let slidenumber = toolbox.logical-slide.at(0)-1;
             #place(center, 
@@ -179,6 +179,7 @@
   project-url: none,
   qr-caption: [],
   contact-appeal: [Get in touch!],
+  content,
   ..args,
 ) = slide({
   heading(level: 1, title)
@@ -201,7 +202,11 @@
       icons.up-arrow
       qr-caption
     },
-    get-in-touch(title: contact-appeal, ..args.named())
+    {
+      content
+
+    // get-in-touch(title: contact-appeal, ..args.named())
+    }
   )
 
   v(1fr)
