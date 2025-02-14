@@ -1,10 +1,14 @@
+#import "@preview/cetz:0.3.1"
+#import "@preview/cetz-plot:0.1.0": plot, chart
+// #import "@preview/minideck:0.2.1"
+// #let (template, slide, only, cetz-uncover, cetz-only) = minideck.config(cetz: cetz)
+
 #import "@preview/polylux:0.4.0": *
 // #import "@preview/friendly-polylux:0.1.0" as friendly
 #import "lib.typ" as friendly
-#import "@preview/cetz:0.3.1"
-#import "@preview/cetz-plot:0.1.0": plot, chart
-#import friendly: titled-block
 
+#import "@preview/pinit:0.2.2": *
+#import friendly: titled-block
 
 #let tableStroke(x,y) = (
   if (x == 0 and y == 0) {

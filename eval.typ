@@ -46,14 +46,23 @@
     stroke: tableStroke,
     table.header(
       [Approach], 
-      [#place(dy:-1cm,text(20pt)[#box[#image("icons/down-arrow-lr.svg",height:0.7em)]$l=11$])$n=3$], 
-      [#place(dy:-1cm,text(20pt)[#box[#image("icons/down-arrow-lr.svg",height:0.7em)]$l=20$])$n=4$], 
-      [#place(dy:-1cm,text(20pt)[#box[#image("icons/down-arrow-lr.svg",height:0.7em)]$l=33$])$n=5$], 
+      // [#pin(1)$n=3$#pin(2)],
+      // [#pin(4)$n=4$],
+      // [#pin(5)$n=5$]
+      // [#place(dy:-1cm,text(20pt)[#box[#image("icons/down-arrow-lr.svg",height:0.7em)]$l=11$])$n=3$], 
+      // [#place(dy:-1cm,text(20pt)[#box[#image("icons/down-arrow-lr.svg",height:0.7em)]$l=20$])$n=4$], 
+      // [#place(dy:-1cm,text(20pt)[#box[#image("icons/down-arrow-lr.svg",height:0.7em)]$l=33$])$n=5$], 
+      [#place(dy:-1cm,text(20pt)[#box[$l=11$]])$n=3$], 
+      [#place(dy:-1cm,text(20pt)[#box[$l=20$]])$n=4$], 
+      [#place(dy:-1cm,text(20pt)[#box[$l=33$]])$n=5$], 
     ),
     [Enumeration], best[$97$ms], [$2.4$s], best[$11$min],
     [AlphaDev-RL], [$6$min], [$30$min], [$17.5$h],
     [AlphaDev-S], [$0.4$s], best[$0.6$s], [$5.75$h]
   )
+
+  // #pinit-point-from((1,2))[$l=11$]
+  // #pinit-highlight(1,2)
 
   - All solutions for $n=3$: $10$min
   - Optimality for $n=4$: $2$weeks

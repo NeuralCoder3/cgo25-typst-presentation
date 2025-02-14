@@ -85,7 +85,7 @@ Results of Kernels (Section 5)
 
   // timsort, introsort => quick/merge/heap then insert
   #toolbox.side-by-side[
-  #cetz.canvas({
+  #context cetz.canvas({
     import cetz.plot
     import cetz.draw: *
 
@@ -153,15 +153,53 @@ Results of Kernels (Section 5)
     line((10,-2), (10,-3), stroke: (dash: "dashed"))
     line((12,-2), (12,-3), stroke: (dash: "dashed"))
 
-  })
+  // })
 
-  #uncover("2-")[
-  #cetz.canvas({
-    import cetz.plot
-    import cetz.draw: *
+  // #uncover("2-")[
+  // #cetz.canvas({
+  //   import cetz.plot
+  //   import cetz.draw: *
 
-    let blue = rgb("E8C872")
+  set-viewport(
+    (0,-9), (1,-8)
+  )
+  let blue = rgb("E8C872")
 
+  if (logic.subslide.at(here()).first() > 1) {
+    for x in (1, 2, 3) {
+      rect((x - 2, 3), (x+1-2,4), fill: blue)
+      rect((x + 5, 3), (x+1+5,4), fill: blue)
+
+      content(
+        (x - 1.5, 3.5),
+        text(str((1,6,5).at(x - 1))), 
+      )
+      content(
+        (x + 5.5, 3.5),
+        text(str((7,9,13).at(x -1))), 
+      )
+    }
+    for x in (1, 2) {
+      rect((x + 2, 3), (x+1+2,4), fill: blue)
+      rect((x + 9, 3), (x+1+9,4), fill: blue)
+
+      content(
+        (x + 2.5, 3.5),
+        text(str((3,4).at(x - 1))), 
+      )
+      content(
+        (x + 9.5, 3.5),
+        text(str((2,8).at(x - 1))), 
+      )
+    }
+
+    line((0.5,5), (0.5,4), stroke: (thickness: 5pt), mark: (end: ">"))
+    line((4,5), (4,4), stroke: (thickness: 5pt), mark: (end: ">"))
+    line((7.5,5), (7.5,4), stroke: (thickness: 5pt), mark: (end: ">"))
+    line((11,5), (11,4), stroke: (thickness: 5pt), mark: (end: ">"))
+
+  }
+  if (logic.subslide.at(here()).first() > 2) {
     // mergesort
     for x in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
       rect((x, 0), (x+1,-1), fill: blue)
@@ -189,32 +227,6 @@ Results of Kernels (Section 5)
     line((6,0), (7,1), stroke: (dash: "dashed"))
     line((11,0), (7+5,1), stroke: (dash: "dashed"))
     
-    for x in (1, 2, 3) {
-      rect((x - 2, 3), (x+1-2,4), fill: blue)
-      rect((x + 5, 3), (x+1+5,4), fill: blue)
-
-      content(
-        (x - 1.5, 3.5),
-        text(str((1,6,5).at(x - 1))), 
-      )
-      content(
-        (x + 5.5, 3.5),
-        text(str((7,9,13).at(x -1))), 
-      )
-    }
-    for x in (1, 2) {
-      rect((x + 2, 3), (x+1+2,4), fill: blue)
-      rect((x + 9, 3), (x+1+9,4), fill: blue)
-
-      content(
-        (x + 2.5, 3.5),
-        text(str((3,4).at(x - 1))), 
-      )
-      content(
-        (x + 9.5, 3.5),
-        text(str((2,8).at(x - 1))), 
-      )
-    }
     line((0,2), (-1,3), stroke: (dash: "dashed"))
     line((3,2), (2,3), stroke: (dash: "dashed"))
     line((3,2), (3,3), stroke: (dash: "dashed"))
@@ -223,10 +235,13 @@ Results of Kernels (Section 5)
     line((10,2), (9,3), stroke: (dash: "dashed"))
     line((10,2), (10,3), stroke: (dash: "dashed"))
     line((12,2), (12,3), stroke: (dash: "dashed"))
+  
+  }
 
-  })]
+  })
+  // ]
   ][
-    #uncover("3-")[
+    #uncover("4-")[
     #cetz.canvas({
       import cetz.plot
       import cetz.draw: *
@@ -302,7 +317,7 @@ Results of Kernels (Section 5)
       )
     })]
 
-    #uncover("4-")[
+    #uncover("5-")[
       // #align(center)[
       ```nasm
       mov rdi, rax
