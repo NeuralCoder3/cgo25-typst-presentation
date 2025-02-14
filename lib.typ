@@ -17,7 +17,8 @@
 ) = {
   let rows = (
     if email != none {
-      (icons.email, email)
+      // (icons.email, email)
+      email
     } else { () },
     if website != none {
       (icons.www, website)
@@ -206,7 +207,7 @@
     {
       content
 
-    // get-in-touch(title: contact-appeal, ..args.named())
+    get-in-touch(title: contact-appeal, ..args.named())
     }
   )
 

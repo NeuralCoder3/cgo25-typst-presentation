@@ -8,6 +8,12 @@
 
 #import "common.typ" : *
 
+// #enable-handout-mode(true)
+// sys.inputs.handout
+#if "handout" in sys.inputs and sys.inputs.handout == "true" {
+  enable-handout-mode(true)
+}
+
 #show: friendly.setup.with(
   short-title: "Synthesis of Sorting Kernels",
   short-speaker: "Marcel Ullrich, Sebastian Hack",
@@ -165,7 +171,7 @@ Results of Kernels (Section 5)
   )
   let blue = rgb("E8C872")
 
-  if (logic.subslide.at(here()).first() > 1) {
+  if (logic.subslide.at(here()).first() > 1 or logic.handout-mode.at(here())) {
     for x in (1, 2, 3) {
       rect((x - 2, 3), (x+1-2,4), fill: blue)
       rect((x + 5, 3), (x+1+5,4), fill: blue)
@@ -199,7 +205,7 @@ Results of Kernels (Section 5)
     line((11,5), (11,4), stroke: (thickness: 5pt), mark: (end: ">"))
 
   }
-  if (logic.subslide.at(here()).first() > 2) {
+  if (logic.subslide.at(here()).first() > 2 or logic.handout-mode.at(here())) {
     // mergesort
     for x in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
       rect((x, 0), (x+1,-1), fill: blue)
@@ -362,6 +368,10 @@ Results of Kernels (Section 5)
       / #icon("icons/minimize-square-minimalistic-svgrepo-com.svg"): minimality proof
     ]
   ]
+
+  #context if(logic.handout-mode.at(here())) {
+    logic.repetitions.update(rep => 1)
+  }
 ]
 
 #slide[
@@ -437,10 +447,14 @@ Results of Kernels (Section 5)
 
   })
 
+    
   #only("2-3")[
     `min(a,min(b,c) = min(min(max(c,b),a),min(b,c))`
   ]
 
+  #context if(logic.handout-mode.at(here())) {
+    logic.repetitions.update(rep => 1)
+  }
   #uncover("4-")[
     #align(center)[
       #place(
@@ -735,6 +749,10 @@ Results of Kernels (Section 5)
     $
   ]
   ]
+
+  #context if(logic.handout-mode.at(here())) {
+    logic.repetitions.update(rep => 2)
+  }
 ]
 
   // - Encode Instructions
@@ -865,7 +883,10 @@ Results of Kernels (Section 5)
   // contact-appeal: [Get in touch #emoji.hand.wave],
   contact-appeal: none,
   // leave out any of the following if they don't apply to you:
-  email: "ullrich@cs.uni-saarland.de",
+  email: 
+    context if(logic.handout-mode.at(here())) {
+      text[#icon("icons/email.svg") #str("ullrich@cs.uni-saarland.de")]
+    } else { none }
   // mastodon: "@foo@baz.org",
   // website: "bar.org"
 )[
