@@ -1,15 +1,5 @@
-// #import "@preview/polylux:0.4.0": *
-// // #import "@preview/friendly-polylux:0.1.0" as friendly
-// #import "lib.typ" as friendly
-// #import "@preview/cetz:0.3.1"
-// #import "@preview/cetz-plot:0.1.0": plot, chart
-// #import friendly: titled-block
-
-
 #import "common.typ" : *
 
-// #enable-handout-mode(true)
-// sys.inputs.handout
 #if "handout" in sys.inputs and sys.inputs.handout == "true" {
   enable-handout-mode(true)
 }
@@ -49,21 +39,6 @@
   ),
 
 )
-
-// #slide[
-//   = My first slide
-//   With some maths: $x^2 + y^2 = z^2$
-
-//   And some code: `Typst *rocks*!`
-
-//   #titled-block(title: [A block])[
-//     Some important content
-//   ]
-
-//   #uncover(2)[
-//     Animation
-//   ]
-// ]
 
 
 /*
@@ -248,7 +223,7 @@ Results of Kernels (Section 5)
   // ]
   ][
     #uncover("4-")[
-    #cetz.canvas({
+    #context cetz.canvas({
       import cetz.plot
       import cetz.draw: *
 
@@ -321,58 +296,73 @@ Results of Kernels (Section 5)
         anchor: "south-west",
         padding: 0.1cm
       )
+
+
+      if (logic.subslide.at(here()).first() >= 5 or logic.handout-mode.at(here())) {
+        content(
+          (2,-4),
+          text[
+            ```nasm
+            mov rdi, rax
+            cmp rbx, rax
+            cmovl rax, rbx
+            cmovl rbx, rdi
+            ```
+          ],
+          name:"code"
+        )
+
+        // rect("c1_t.west","c1_b.south-east", fill: red, stroke: (thickness: 1.0pt, dash:"dashed"))
+        rect(
+          ("c1_t.center",200%,"c1_t.north-west"),
+          ("c1_b.center",200%,"c1_b.south-east"),
+          // fill: none, stroke: (thickness: 1.0pt, dash:"dashed"),
+          name: "network-outline"
+        )
+
+        rect(
+          ("code.center",105%,"code.north-west"),
+          ("code.center",105%,"code.south-east"),
+          // fill: none, stroke: (thickness: 1.0pt, dash:"dashed"),
+          name: "code-outline"
+        )
+
+        line("network-outline.south-west","code-outline.north-west", stroke: (thickness: 1.0pt, dash:"dashed"))
+        line("network-outline.south-east","code-outline.north-east", stroke: (thickness: 1.0pt, dash:"dashed"))
+        
+      }
+
     })]
+    #uncover("5-")[]
 
-    #uncover("5-")[
-      // #align(center)[
-      ```nasm
-      mov rdi, rax
-      cmp rbx, rax
-      cmovl rax, rbx
-      cmovl rbx, rdi
-      ```
-      // ]
-    ]
+    // #uncover("5-")[
+    //   // #align(center)[
+    //   ```nasm
+    //   mov rdi, rax
+    //   cmp rbx, rax
+    //   cmovl rax, rbx
+    //   cmovl rbx, rdi
+    //   ```
+    //   // ]
+
+    //   #place(
+    //     bottom+right,
+    //     dx:-8.7cm,
+    //     dy:-5.9cm,
+    //     cetz.canvas({
+    //       import cetz.plot
+    //       import cetz.draw: *
+
+    //       rect((0,0), (1,3), fill: none, stroke: (thickness: 1.0pt, dash:"dashed"))
+    //       rect((3,-3), (10,-10), fill: none, stroke: (thickness: 1.0pt, dash:"dashed"))
+
+    //     })
+    //   )
+    // ]
 
   ]
 ]
 
-
-#slide[
-  #toolbox.pdfpc.speaker-note("all kernels -> faster, minimal")
-  = State of the Art
-  /*
-  handoptimized
-  hard problem (present later)
-
-  AlphaDev finds code
-
-  we find 
-  - faster
-  - all -> faster kernel
-  - minimal
-  */
-
-  #toolbox.side-by-side()[
-    - #only("1")[sorting network #icon("icons/snail-svgrepo-com.svg")] #only("2-")[handoptimized #icon("icons/bug-color-svgrepo-com.svg")]
-    #show: later
-    #show: later
-    - #only("-3")[2024 AlphaDev#footnote(text(size:15pt)[Mankowitz, Daniel J., et al. "Faster sorting algorithms discovered using deep reinforcement learning." Nature 618.7964 (2023): 257-263.])]
-      - $n=3$: #only("-3")[6min ] #only("4-")[#strike[6min] $97$ms]
-      - $n=4$: #only("-3")[30min] #only("4-")[#strike[30min] $2.4$s]
-      - $n=5$: #only("-3")[17.5h] #only("4-")[#strike[17.5h] $11$min]
-  ][
-    #item-by-item(start:4)[
-      / #icon("icons/speed-svgrepo-com.svg"): faster synthesis
-      / #icon("icons/speedometer-svgrepo-com.svg"): faster sorting kernels
-      / #icon("icons/minimize-square-minimalistic-svgrepo-com.svg"): minimality proof
-    ]
-  ]
-
-  #context if(logic.handout-mode.at(here())) {
-    logic.repetitions.update(rep => 1)
-  }
-]
 
 #slide[
   #alternatives(repeat-last: true)[
@@ -401,11 +391,11 @@ Results of Kernels (Section 5)
     let bg3 = rgb("#9ea6aa")
 
     let registers = (
-      ("2","1","-", "-", "-"),
-      ("2","1","1", "-", "-"),
-      ("2","1","1", "-", ">"),
-      ("2","2","1", "-", ">"),
-      ("1","2","1", "-", ">"),
+      ("13","9","-", "-", "-"),
+      ("13","9","9", "-", "-"),
+      ("13","9","9", "-", ">"),
+      ("13","13","9", "-", ">"),
+      ("9","13","9", "-", ">"),
     )
     let instruction = (
       `mov s1 r2`,
@@ -419,7 +409,7 @@ Results of Kernels (Section 5)
       for x in (0, 1, 2, 3, 4) {
         rect((x, -y), (x+1,-y - 1), fill: (bg,bg,bg2,bg3,bg3).at(x),name: "r"+str(y)+"c"+str(x))
       }
-      content("r"+str(y)+"c0.west", anchor: "east", instruction.at(y), padding:0.5cm)
+      content("r"+str(y)+"c0.west", anchor: "east", instruction.at(y), padding:0.5cm, name:"instruction"+str(y))
     }
     content("r0c2.north",anchor: "south", text(15pt)[swap])
     content("r0c3.north",anchor: "south", text(20pt)[lt], padding: 0.3cm)
@@ -445,6 +435,25 @@ Results of Kernels (Section 5)
     content("brace1.center", text(15pt)[register], anchor: "south", padding: 0.2cm)
 
 
+    content(
+      "r4c0.south",
+      anchor: "east",
+      padding: 0.5cm,
+      text(15pt)[
+        sample from \ ${ "mov", "cmovl", "cmovg", "cmp" }$
+      ],
+      name: "sample"
+    )
+
+    // line(
+    //   "sample.west",
+    //   "instruction3.west",
+    //   stroke: (thickness: 1.0pt, dash:"dashed"),
+    // )
+    // line((-3,-3),(0,0))
+    content((-6.5,-4), fletcher.diagram(fletcher.edge((0,0), (0,-0.5), "->", bend: 80deg, stroke: 1pt)))
+    // fletcher.cetz.decorations
+
   })
 
     
@@ -461,7 +470,7 @@ Results of Kernels (Section 5)
         bottom+center,
         dy: 3.0cm,
         box[
-      #image("imgs/solutions_cut_all_commands_no_early__scattered_a70_p50_i3000_scaled.svg", height: 5cm)
+      #image("imgs/solutions_cut_all_commands_no_early__scattered_a70_p50_i3000_scaled.png", height: 5cm)
       #place(
         bottom+center,
         dy: 0.5cm,
@@ -498,6 +507,45 @@ Results of Kernels (Section 5)
   
   ]
 ]
+
+#slide[
+  #toolbox.pdfpc.speaker-note("all kernels -> faster, minimal")
+  = State of the Art
+  /*
+  handoptimized
+  hard problem (present later)
+
+  AlphaDev finds code
+
+  we find 
+  - faster
+  - all -> faster kernel
+  - minimal
+  */
+
+  #toolbox.side-by-side()[
+    // - #only("1")[sorting network #icon("icons/snail-svgrepo-com.svg")] #only("2-")[handoptimized #icon("icons/bug-color-svgrepo-com.svg")]
+    - #uncover("1-")[sorting network #icon("icons/snail-svgrepo-com.svg")] 
+    - #uncover("2-")[handoptimized #icon("icons/bug-color-svgrepo-com.svg")]
+    #show: later
+    #show: later
+    - #only("3")[2024 AlphaDev#footnote(text(size:15pt)[Mankowitz, Daniel J., et al. "Faster sorting algorithms discovered using deep reinforcement learning." Nature 618.7964 (2023): 257-263.])] #only("4-")[#strike[2024 AlphaDev]]
+      - $n=3$: #only("-3")[6min ] #only("4-")[#strike[6min] $97$ms]
+      - $n=4$: #only("-3")[30min] #only("4-")[#strike[30min] $2.4$s]
+      - $n=5$: #only("-3")[17.5h] #only("4-")[#strike[17.5h] $11$min]
+  ][
+    #item-by-item(start:4)[
+      / #icon("icons/speed-svgrepo-com.svg"): faster synthesis
+      / #icon("icons/speedometer-svgrepo-com.svg"): faster sorting kernels
+      / #icon("icons/minimize-square-minimalistic-svgrepo-com.svg"): minimality proof
+    ]
+  ]
+
+  #context if(logic.handout-mode.at(here())) {
+    logic.repetitions.update(rep => 1)
+  }
+]
+
 
 
   // alternatives-cases(("1"), case => [
@@ -539,14 +587,25 @@ Results of Kernels (Section 5)
     let yellow = rgb("#e8cb72")
     let red = rgb("#e87272")
 
-    let group(name,x,y,xs) = (
+    let group(name,x,y,xs,highlight: false) = {
+      if highlight {
+        // rect((x -0.2,y -0.2), (x+xs.len()+0.2,y+1+0.2), fill:yellow)
+        rect((x -0.2,y -0.2), (x+xs.len()+0.2,y+1+0.2), fill:lime, stroke: none)
+      }
       for (i,c) in xs.enumerate() {
         rect((x+i, y), (x+i+1,y+1), fill: c, name: name+"_"+str(i))
         // content((x+i+0.5, y+0.5), name: name+"_"+str(i),
         
         // )
       }
-    )
+    }
+
+    rect((17,0),(18,1), fill:yellow)
+    content( (19,0.5), text("<"), )
+    rect((20,0),(21,1), fill:blue)
+    content( (22,0.5), text("<"), )
+    rect((23,0),(24,1), fill:red)
+
 
     let mid = (3*3+2)/2
 
@@ -586,21 +645,27 @@ Results of Kernels (Section 5)
 
     let x = 0
     let y = -6
-    group("c1_1_a",x+0,y, (yellow,blue,red))
+    group("c1_1_a",x+0,y, (yellow,blue,red), highlight: true)
     group("c1_1_b",x+4,y, (blue,yellow,red))
     group("c1_1_c",x+8,y, (red,yellow,blue))
 
     let x = 15
     let y = -6
     group("c1_2_a",x+0, y, (blue,yellow,red))
-    group("c1_2_b",x+4, y, (yellow,blue,red))
-    group("c1_2_c",x+8, y, (yellow,blue,red))
+    group("c1_2_b",x+4, y, (yellow,blue,red), highlight: true)
+    group("c1_2_c",x+8, y, (yellow,blue,red), highlight: true)
 
     let x = 15
     let y = -12
-    group("c2_0_a",x+0, y, (yellow,blue,red))
-    group("c2_0_b",x+4, y, (yellow,blue,red))
-    group("c2_0_c",x+8, y, (yellow,blue,red))
+
+    content(
+      (0+mid,y+1),
+      text[...],
+      name: "dots"
+    )
+    group("c2_0_a",x+0, y, (yellow,blue,red), highlight: true)
+    group("c2_0_b",x+4, y, (yellow,blue,red), highlight: true)
+    group("c2_0_c",x+8, y, (yellow,blue,red), highlight: true)
     content(
       (x+mid,y - 2),
       image("icons/check-mark-button-svgrepo-com.svg", width: 1em)
@@ -628,6 +693,13 @@ Results of Kernels (Section 5)
     line(
       "c1_2_b_1.south",
       "c2_0_b_1.north",
+      mark: (end: ">", scale:3, fill:black),
+      stroke: (thickness: 2pt),
+    )
+
+    line(
+      "c1_1_b_1.south",
+      "dots.north",
       mark: (end: ">", scale:3, fill:black),
       stroke: (thickness: 2pt),
     )
@@ -778,7 +850,8 @@ Results of Kernels (Section 5)
 
 #slide[
   #toolbox.pdfpc.speaker-note("timeout 5h, for 4: 1week")
-  = Solver-Based Synthesis
+  = Solver-Based Synthesis $n=3$
+
 
   #set text(size: 25pt)
 
@@ -823,7 +896,7 @@ Results of Kernels (Section 5)
         [$232$s], [chuffed, no heuristic],
         [$70$s], [chuffed, h, $=1..n$],
         [$30$s], [chuffed, h, $<=$,$#1..3$],
-        [$0.9$s], [+init],
+        // [$0.9$s], [+init],
       )
       ]
     ]),
@@ -853,6 +926,14 @@ Results of Kernels (Section 5)
       // ]
     ]
   ))
+      #uncover("4-")[
+        #place(
+          right+bottom,
+          dx: -6cm,
+          dy: -3cm,
+          text(35pt)[Enum: 97ms]
+        )
+      ]
 
   // CEGIS (full loop vs directly)
   // SyGus (metalift)

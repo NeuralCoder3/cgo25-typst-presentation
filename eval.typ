@@ -31,7 +31,7 @@
     #place(
       center,
       dx:-2cm,
-      image("imgs/all_solutions_cut_all_commands_no_early__scattered_a70_p50_i3000_cut.svg",height: 11cm)
+      image("imgs/all_solutions_cut_all_commands_no_early__scattered_a70_p50_i3000_cut.png",height: 11cm)
     )
   ]
 
@@ -81,11 +81,11 @@
       [$n=4$], 
       [$n=5$]
     ),
-    [Enumeration], best[$5.8$ms], [$9.4$ms], best[$14.8$ms],
-    [Mimicry#footnote(text()[Mimicry. 2023. Faster Sorting Beyond DeepMind’s AlphaDev. https://www.mimicry.ai/faster-sorting-beyond-deepminds-alphadev Accessed: 2023-09-20])], [---], best[$8.8$ms], [---],
+    underline[Enumeration], best[$5.8$ms], [$9.4$ms], best[$14.8$ms],
+    [Mimicry#footnote(text()[Mimicry. 2023. Faster Sorting Beyond DeepMind’s AlphaDev. https://www.mimicry.ai/faster-sorting-beyond-deepminds-alphadev Accessed: 2023-09-20])], [$8.0$ms], best[$8.8$ms], [---],
     [AlphaDev], [$6.7$ms], [$10.4$ms], [$16.2$ms],
     [Sorting Network (Cmp)], [$7.1$ms], [$14.8$ms], [$19.4$ms],
-    uncover("2-")[MinMax], 
+    uncover("2-")[#underline[MinMax]], 
     uncover("2-")[#highlight(fill:green.lighten(60%))[4.6ms]], 
     uncover("2-")[#highlight(fill:green.lighten(60%))[7.0ms]], 
     uncover("2-")[#highlight(fill:green.lighten(60%))[10.7ms]], 

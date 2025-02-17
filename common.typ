@@ -7,6 +7,7 @@
 // #import "@preview/friendly-polylux:0.1.0" as friendly
 #import "lib.typ" as friendly
 
+#import "@preview/fletcher:0.5.1"
 #import "@preview/pinit:0.2.2": *
 #import friendly: titled-block
 
