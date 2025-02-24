@@ -9,10 +9,6 @@
   short-speaker: "Marcel Ullrich, Sebastian Hack",
 )
 
-// #set text(size: 30pt, font: "Andika")
-// #show raw: set text(font: "Fantasque Sans Mono")
-// #show math.equation: set text(font: "Lete Sans Math")
-
 #set text(size: 30pt)
 
 #friendly.title-slide(
@@ -22,10 +18,6 @@
     #text(size: 20pt)[Saarland University, Saarland Informatics Campus]
   ],
   conference: [03.03.2025, CGO 2025],
-  // speaker-website: "url-to-the-speaker.org", // use `none` to disable
-  // slides-url: none, // use `none` to disable
-  // qr-caption: text(font: "Excalifont")[Get these slides],
-  // logo: image("uni_logo.png", width: 2cm, height: 2cm)
   logo: place(
     bottom+center,
     dx: 2.07cm,
@@ -76,7 +68,6 @@ Results of Kernels (Section 5)
     // mergesort
     for x in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
       rect((x, 0), (x+1,1), fill: blue)
-      // text((x+0.5, 0.5), str(numbers.at(x - 1)), anchor: "middle")
       content(
         (x+0.5, 0.5),
         text(str(numbers.at(x - 1))), 
@@ -134,13 +125,6 @@ Results of Kernels (Section 5)
     line((10,-2), (10,-3), stroke: (dash: "dashed"))
     line((12,-2), (12,-3), stroke: (dash: "dashed"))
 
-  // })
-
-  // #uncover("2-")[
-  // #cetz.canvas({
-  //   import cetz.plot
-  //   import cetz.draw: *
-
   set-viewport(
     (0,-9), (1,-8)
   )
@@ -184,7 +168,6 @@ Results of Kernels (Section 5)
     // mergesort
     for x in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
       rect((x, 0), (x+1,-1), fill: blue)
-      // text((x+0.5, 0.5), str(numbers.at(x - 1)), anchor: "middle")
       content(
         (x+0.5, -0.5),
         text(str((1,2,3,4,5,6,7,8,9,13).at(x - 1))), 
@@ -312,18 +295,15 @@ Results of Kernels (Section 5)
           name:"code"
         )
 
-        // rect("c1_t.west","c1_b.south-east", fill: red, stroke: (thickness: 1.0pt, dash:"dashed"))
         rect(
           ("c1_t.center",200%,"c1_t.north-west"),
           ("c1_b.center",200%,"c1_b.south-east"),
-          // fill: none, stroke: (thickness: 1.0pt, dash:"dashed"),
           name: "network-outline"
         )
 
         rect(
           ("code.center",105%,"code.north-west"),
           ("code.center",105%,"code.south-east"),
-          // fill: none, stroke: (thickness: 1.0pt, dash:"dashed"),
           name: "code-outline"
         )
 
@@ -335,30 +315,6 @@ Results of Kernels (Section 5)
     })]
     #uncover("5-")[]
 
-    // #uncover("5-")[
-    //   // #align(center)[
-    //   ```nasm
-    //   mov rdi, rax
-    //   cmp rbx, rax
-    //   cmovl rax, rbx
-    //   cmovl rbx, rdi
-    //   ```
-    //   // ]
-
-    //   #place(
-    //     bottom+right,
-    //     dx:-8.7cm,
-    //     dy:-5.9cm,
-    //     cetz.canvas({
-    //       import cetz.plot
-    //       import cetz.draw: *
-
-    //       rect((0,0), (1,3), fill: none, stroke: (thickness: 1.0pt, dash:"dashed"))
-    //       rect((3,-3), (10,-10), fill: none, stroke: (thickness: 1.0pt, dash:"dashed"))
-
-    //     })
-    //   )
-    // ]
 
   ]
 ]
@@ -371,13 +327,6 @@ Results of Kernels (Section 5)
     = Search Space
     // = Enumerative Synthesis
   ]
-
-  /*
-
-
-
-  */
-
 
   #toolbox.side-by-side()[
 
@@ -445,14 +394,7 @@ Results of Kernels (Section 5)
       name: "sample"
     )
 
-    // line(
-    //   "sample.west",
-    //   "instruction3.west",
-    //   stroke: (thickness: 1.0pt, dash:"dashed"),
-    // )
-    // line((-3,-3),(0,0))
     content((-6.5,-4), fletcher.diagram(fletcher.edge((0,0), (0,-0.5), "->", bend: 80deg, stroke: 1pt)))
-    // fletcher.cetz.decorations
 
   })
 
@@ -482,9 +424,6 @@ Results of Kernels (Section 5)
 
   ][
 
-  // | $n$ | Program Length | Search Space |
-  // | --- | --------------- | ------------ |
-  // | 3   | 3               | 5            |
   #uncover("3-")[
   #table(
     columns: (auto,auto,auto),
@@ -501,9 +440,6 @@ Results of Kernels (Section 5)
   
   $5602$ solutions for $n=3$
   ]
-  // $n=3$ has $5602$ solutions
-  
-  
   
   ]
 ]
@@ -524,7 +460,6 @@ Results of Kernels (Section 5)
   */
 
   #toolbox.side-by-side()[
-    // - #only("1")[sorting network #icon("icons/snail-svgrepo-com.svg")] #only("2-")[handoptimized #icon("icons/bug-color-svgrepo-com.svg")]
     - #uncover("1-")[sorting network #icon("icons/snail-svgrepo-com.svg")] 
     - #uncover("2-")[handoptimized #icon("icons/bug-color-svgrepo-com.svg")]
     #show: later
@@ -548,12 +483,6 @@ Results of Kernels (Section 5)
 
 
 
-  // alternatives-cases(("1"), case => [
-  //   #set highlight() if case == 1
-  //   #content
-  // ]))
-
-
 #slide[
     = Enumerative Synthesis
 
@@ -564,39 +493,21 @@ Results of Kernels (Section 5)
     import cetz.decorations: *
     import cetz.draw: *
 
-    // cetz.draw.set-style(scale: 0.2)
     cetz.draw.set-viewport(
       (0,0), (0.5,0.5),
-      // bounds: (100,100)
     )
 
-  // set-style(
-  //   // mark: (fill: black, scale: 2),
-  //   // stroke: (thickness: 0.4pt, cap: "round"),
-  //   // angle: (
-  //   //   radius: 0.3,
-  //   //   label-radius: .22,
-  //   //   fill: green.lighten(80%),
-  //   //   stroke: (paint: green.darken(50%))
-  //   // ),
-  //   content: (padding: 5pt)
-  // )
 
     let blue = rgb("#739ede")
-    // let yellow = rgb("#e8c872")
     let yellow = rgb("#e8cb72")
     let red = rgb("#e87272")
 
     let group(name,x,y,xs,highlight: false) = {
       if highlight {
-        // rect((x -0.2,y -0.2), (x+xs.len()+0.2,y+1+0.2), fill:yellow)
         rect((x -0.2,y -0.2), (x+xs.len()+0.2,y+1+0.2), fill:lime, stroke: none)
       }
       for (i,c) in xs.enumerate() {
         rect((x+i, y), (x+i+1,y+1), fill: c, name: name+"_"+str(i))
-        // content((x+i+0.5, y+0.5), name: name+"_"+str(i),
-        
-        // )
       }
     }
 
@@ -624,24 +535,6 @@ Results of Kernels (Section 5)
       (x+mid,y - 2),
       image("icons/cross-mark-svgrepo-com.svg", width: 1em)
     )
-    // line(
-    //   (mid,0),(x+mid,-2),
-    //   mark: (end: ">"),
-    // )
-    // 
-    // let from = (mid,0)
-    // let to = (x+mid,-2)
-    // let from = "c0_0_b_1"
-    // let to = "c1_0_b_1"
-    // line(
-    //   "c0_0_b_1.south",
-    //   "c1_0_b_1.north",
-    //   // mark: (end: ">",length:1.0cm),
-    //   mark: (end: ">", scale:3, fill:black),
-    //   stroke: (thickness: 2pt),
-    // )
-    // line((a: from, number: .6, b: to),
-    //      (a: to, number: .6, b: from), mark: (end: ">"))
 
     let x = 0
     let y = -6
@@ -730,11 +623,6 @@ Results of Kernels (Section 5)
 
     */
 
-    // #alternatives-match((
-    //   "1": highlight("Select open state"),
-    //   "2-": "Select open state",
-    // ))
-    //
 
     #toolbox.side-by-side[
     1. #icon("icons/eye-show-svgrepo-com.svg") #limelight("1","2-","Select open state") \
@@ -858,7 +746,6 @@ Results of Kernels (Section 5)
   #layout(size =>
   grid(
     columns: (50%,50%),
-    // rows: (40%*size.height,40%*size.height),
     rows: (40%*size.height,auto),
     stroke: (x,y) =>
       if(x == 0 and y == 0) {
@@ -915,15 +802,6 @@ Results of Kernels (Section 5)
       ]
     ],
     pad(10pt)[
-      // #uncover("4-")[
-      // #table(
-      //   columns: 2,
-      //   stroke: tableStroke,
-      //   table.header(
-      //     [Time], [Approach]
-      //   ),
-      // )
-      // ]
     ]
   ))
       #uncover("4-")[
@@ -959,17 +837,12 @@ Results of Kernels (Section 5)
 #friendly.last-slide(
   title: [Conclusion],
   project-url: "https://github.com/NeuralCoder3/cgo25_artifact",
-  // font: "Excalifont"
   qr-caption: text()[Project on GitHub],
-  // contact-appeal: [Get in touch #emoji.hand.wave],
   contact-appeal: none,
-  // leave out any of the following if they don't apply to you:
   email: 
     context if(logic.handout-mode.at(here())) {
       text[#icon("icons/email.svg") #str("ullrich@cs.uni-saarland.de")]
     } else { none }
-  // mastodon: "@foo@baz.org",
-  // website: "bar.org"
 )[
       / #icon("icons/speed-svgrepo-com.svg"): faster synthesis
       / #icon("icons/speedometer-svgrepo-com.svg"): faster sorting kernels

@@ -1,4 +1,3 @@
-// #import "@preview/polylux:0.4.0": *
 #import "polylux/0.4.0/src/polylux.typ": *
 #import "@preview/tiaoma:0.2.1"
 
@@ -73,8 +72,6 @@
           dy: -.5cm,
           box[
             #image("imgs/uni_logo.png", width: 2cm, height: 2cm)
-            // #let slidenumber = int(toolbox.slide-number)-1;
-            // #let slidenumber = toolbox.logical-slide.at(0)-1;
             #place(center, 
               dy: -1.2cm,
               text(
