@@ -1,7 +1,8 @@
 #import "@preview/cetz:0.3.1"
 #import "@preview/cetz-plot:0.1.0": plot, chart
 
-#import "@preview/polylux:0.4.0": *
+// #import "@preview/polylux:0.4.0": *
+#import "polylux/0.4.0/src/polylux.typ": *
 #import "lib.typ" as friendly
 
 #import "@preview/fletcher:0.5.1"

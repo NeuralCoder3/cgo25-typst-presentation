@@ -87,5 +87,21 @@
     uncover("2-")[$12.2$ms],
 
   )
+  #uncover("2-")[
+  #place(
+    right,
+    dx:-0cm,
+    dy:-5cm,
+    text(size: 20pt)[```
+movdqa %xmm1, %xmm3
+pminud %xmm2, %xmm1
+pmaxud %xmm3, %xmm2
+movdqa %xmm0, %xmm3
+pminud %xmm2, %xmm3
+pmaxud %xmm0, %xmm2
+pminud %xmm1, %xmm0
+pmaxud %xmm3, %xmm1
+    ```]
+  )]
   
 ]
