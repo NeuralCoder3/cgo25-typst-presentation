@@ -137,7 +137,7 @@ Results of Kernels (Section 5)
 
       content(
         (x - 1.5, 3.5),
-        text(str((1,6,5).at(x - 1))), 
+        text(str((1,5,6).at(x - 1))), 
       )
       content(
         (x + 5.5, 3.5),
@@ -464,7 +464,7 @@ Results of Kernels (Section 5)
     - #uncover("2-")[handoptimized #icon("icons/bug-color-svgrepo-com.svg")]
     #show: later
     #show: later
-    - #only("3")[2024 AlphaDev#footnote(text(size:15pt)[Mankowitz, Daniel J., et al. "Faster sorting algorithms discovered using deep reinforcement learning." Nature 618.7964 (2023): 257-263.])] #only("4-")[#strike[2024 AlphaDev]]
+    - #only("3")[2023 AlphaDev#footnote(text(size:15pt)[Mankowitz, Daniel J., et al. "Faster sorting algorithms discovered using deep reinforcement learning." Nature 618.7964 (2023): 257-263.])] #only("4-")[#strike[2023 AlphaDev]]
       - $n=3$: #only("-3")[6min ] #only("4-")[#strike[6min] $97$ms]
       - $n=4$: #only("-3")[30min] #only("4-")[#strike[30min] $2.4$s]
       - $n=5$: #only("-3")[17.5h] #only("4-")[#strike[17.5h] $11$min]
